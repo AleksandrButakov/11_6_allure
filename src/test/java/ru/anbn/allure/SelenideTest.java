@@ -17,7 +17,6 @@ public class SelenideTest {
     @BeforeEach
     void beforeEach() {
         open("https://github.com");
-
     }
 
     @AfterEach
