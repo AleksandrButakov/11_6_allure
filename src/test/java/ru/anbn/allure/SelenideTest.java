@@ -40,9 +40,6 @@ public class SelenideTest {
         // проверим что элемент с индексом #68 присутствует
         $(withText("#68")).should(Condition.exist);
 
-
-        //sleep(2000);
-
     }
 
 }

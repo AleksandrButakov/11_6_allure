@@ -13,7 +13,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class WebSteps {
-
     @Step("Open the main page")
     public void openMainPage() {
         open("https://github.com");
@@ -46,6 +45,7 @@ public class WebSteps {
     @Attachment(value = "Screenshot", type = "image/png", fileExtension = "png")
     public byte[] takeScreenshot() {
         return ((TakesScreenshot) WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES);
+
     }
 
 }
