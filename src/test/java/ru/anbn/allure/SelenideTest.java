@@ -1,8 +1,6 @@
-package homework;
+package ru.anbn.allure;
 
-import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import io.qameta.allure.Allure;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -13,9 +11,8 @@ import org.openqa.selenium.By;
 import static com.codeborne.selenide.Configuration.*;
 import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selenide.*;
-import static io.qameta.allure.Allure.*;
 
-public class LambdaStepTest {
+public class SelenideTest {
 
     private static final String REPOSITORY = "AleksandrButakov/11_7_allure";
 
@@ -37,28 +34,20 @@ public class LambdaStepTest {
     }
 
     @Test
-    public void testLambdaSteps() {
+    void testIssueSearch() {
         // подключаем logger для красивого отображения шагов в отчете
         SelenideLogger.addListener("allure", new AllureSelenide());
 
-        step("Open the main page", () -> {
-            open(baseUrl);
-        });
+        // введем запрос для поиска репозитория
+        $("[data-test-selector='nav-search-input']").click();
+        $("[data-test-selector='nav-search-input']").sendKeys(REPOSITORY);
+        $("[data-test-selector='nav-search-input']").submit();
 
-        step("Repository search " + REPOSITORY, () -> {
-            $("[data-test-selector='nav-search-input']").click();
-            $("[data-test-selector='nav-search-input']").sendKeys(REPOSITORY);
-            $("[data-test-selector='nav-search-input']").submit();
-        });
+        // клик по ссылке на репозиторий
+        $(byLinkText("AleksandrButakov/11_7_allure")).click();
 
-        step("Open the repository " + REPOSITORY, () -> {
-            $(byLinkText("AleksandrButakov/11_7_allure")).click();
-        });
-
-        step("Checking for the Issue tab", () -> {
-            $(By.partialLinkText("Issue")).click();
-            Allure.addAttachment("Page Source", "text/html", WebDriverRunner.source(), "html");
-        });
+        // проверка наличия вкладки Issue
+        $(By.partialLinkText("Issue")).click();
 
     }
 

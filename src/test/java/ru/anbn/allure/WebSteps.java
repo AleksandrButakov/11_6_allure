@@ -1,4 +1,4 @@
-package homework;
+package ru.anbn.allure;
 
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Attachment;

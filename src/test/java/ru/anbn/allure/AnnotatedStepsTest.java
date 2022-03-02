@@ -1,4 +1,4 @@
-package homework;
+package ru.anbn.allure;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
